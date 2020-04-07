@@ -9,7 +9,7 @@ import android.widget.EditText;
 
 public class UpdateData extends AppCompatActivity {
 
-    EditText etPh,etnam2;
+    EditText enterName1,editUp1,courseUp1,TypeUp1;
     Button bt;
     data d;
 
@@ -19,16 +19,22 @@ public class UpdateData extends AppCompatActivity {
         setContentView(R.layout.activity_update_data);
 
         bt = findViewById(R.id.btnUp);
-        etPh = findViewById(R.id.editUp);
-        etnam2 = findViewById(R.id.editPhone);
+        enterName1= findViewById(R.id.enterName);
+        editUp1= findViewById(R.id.editUp);
+        courseUp1= findViewById(R.id.courseUp);
+        TypeUp1= findViewById(R.id.TypeUp);
+
+
         d = new data(getApplicationContext());
 
         bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String name = etnam2.getText().toString();
-                long phNum = Long.parseLong(etPh.getText().toString());
-                d.Update(name,phNum);
+                String courseName = enterName1.getText().toString();
+                String editUp2 = editUp1.getText().toString();
+                String courseUp2 = courseUp1.getText().toString();
+                String TypeUp2 = TypeUp1.getText().toString();
+                d.Update(courseName,TypeUp2,courseUp2,editUp2);
             }
         });
 

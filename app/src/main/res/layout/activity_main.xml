@@ -1,30 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Database Sqlite"
-        android:layout_gravity="center_horizontal"
-        android:textSize="25sp" />
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Exam Date Sheet Admin Panel"
+            android:layout_gravity="center_horizontal"
+            android:textSize="25sp" />
 
     <EditText
         android:id="@+id/editData"
-        android:hint="Name"
+        android:hint="Exam Name must be unique"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp" />
+    <EditText
+        android:id="@+id/examType"
+        android:hint="Exam Type like ca, mid,end"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp" />
+    <EditText
+        android:id="@+id/edit"
+        android:hint="Course Name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp" />
 
     <EditText
         android:id="@+id/editLong"
-        android:hint="Phone Num"
+        android:hint="Exam Date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp" />
@@ -34,7 +51,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#3ab876"
-        android:text="Add Data" />
+        android:text="Add Above Entered exam data to list" />
 
     <Button
         android:id="@+id/remove"
@@ -42,7 +59,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:background="#3ab876"
-        android:text="View" />
+        android:text="View added data added or not" />
 
     <Button
         android:id="@+id/viewlist"
@@ -50,7 +67,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:background="#3ab876"
-        android:text="Viewlist" />
+        android:text="View All exams added in sheet" />
 
     <Button
         android:id="@+id/Update"
@@ -58,7 +75,7 @@
         android:layout_height="wrap_content"
         android:background="#3ab876"
         android:layout_marginTop="10dp"
-        android:text="Update" />
+        android:text="Update Exam data" />
 
     <Button
         android:id="@+id/Delete"
@@ -66,16 +83,17 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:background="#3ab876"
-        android:text="Delete" />
+        android:text="Delete Exam data" />
 
     <Button
         android:id="@+id/search"
         android:layout_width="match_parent"
         android:background="#3ab876"
+        android:layout_marginBottom="50dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="Search" />
+        android:text="Search with course name exam data" />
 
+    </LinearLayout>
 
-
-</LinearLayout>
+</ScrollView>

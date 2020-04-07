@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class data extends SQLiteOpenHelper {
     Context c;
-    static final int ver = 2;
+    static final int ver = 3;
     static final String dbName = "mydb";
 
 
@@ -25,16 +25,18 @@ public class data extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db)
     {
-        String s = "create table myinfo(name text,Phnum integer)";
+        String s = "create table myinfo(name text,type text,eName text,dateOn text)";
         db.execSQL(s);
     }
 
-    void insertData(String name, long phnum)
+    void insertData(String name, String type, String examName, String date)
     {
         SQLiteDatabase sd = getWritableDatabase();
         ContentValues v = new ContentValues();
         v.put("name",name);
-        v.put("Phnum",phnum);
+        v.put("type", type);
+        v.put("eName", examName);
+        v.put("dateOn",date);
         sd.insert("myinfo",null, v);
     }
     @Override
@@ -48,14 +50,20 @@ public class data extends SQLiteOpenHelper {
         String s = "select * from myinfo";
 
         Cursor cr = sd1.rawQuery(s,null);
-        String name ="";
-        long p=0;
+        String courseName ="";
+        String  ExamType="";
+        String ExamN="";
+        String date ="";
+
         while(cr.moveToNext())
         {
-            name = cr.getString(0);
-            p = cr.getLong(1);// Query passed says about column number
+            courseName = cr.getString(0);
+            ExamType = cr.getString(1);
+            ExamN = cr.getString(2);
+            date = cr.getString(3);
+
         }
-        Toast.makeText(c, "Name: " + name + "\nPhone num:" + p, Toast.LENGTH_SHORT).show();
+        Toast.makeText(c, "Exam Name: " + courseName + "\nExam Type:" + ExamType+ "\nCourse Name:" + ExamN+ "\nDate:" + date, Toast.LENGTH_SHORT).show();
     }
 
     public ArrayList<String> showValues()
@@ -68,19 +76,23 @@ public class data extends SQLiteOpenHelper {
         while(cr.moveToNext())
         {
             String s1 = cr.getString(0);
-            long l = cr.getLong(1);
-            String s3 = "Name is: " + s1 +"\n Mobile number is: " + l;
+            String s2 = cr.getString(1);
+            String s3 = cr.getString(2);
+            String l = cr.getString(3);
+            String s4 = "Exam Name: " + s1 + "\n Exam Type:" + s2+ "\n Course Name:" + s3+ "\n Date:" + l;
 
-            a1.add(s3);
+            a1.add(s4);
         }
         return a1;
     }
-    void Update(String name, long ph)
+    void Update(String name, String type, String examName, String date)
     {
         SQLiteDatabase sd = getWritableDatabase();
         String n = "name = ?";
         ContentValues cv = new ContentValues();
-        cv.put("Phnum", ph);
+        cv.put("type", type);
+        cv.put("eName", examName);
+        cv.put("dateOn",date);
         String[] sr = {name};
         sd.update("myinfo", cv, n, sr);
         Toast.makeText(c, "Data Updated", Toast.LENGTH_SHORT).show();
@@ -92,7 +104,7 @@ public class data extends SQLiteOpenHelper {
         String n = "name = ?";
         String[] sr = {name};
         sd.delete("myinfo",n,sr);
-        Toast.makeText(c, name + " name's Data deleted", Toast.LENGTH_SHORT).show();
+        Toast.makeText(c, name + " Exam name's Data deleted", Toast.LENGTH_SHORT).show();
     }
 
     public ArrayList<String> searchData(String name)
@@ -104,9 +116,11 @@ public class data extends SQLiteOpenHelper {
         Cursor cr = sd.rawQuery(sr,ar);
         while(cr.moveToNext())
         {
-            String n = cr.getString(0);
-            long pn = cr.getLong(1);
-            String all = "name: " + n + "Phone number is: " + pn;
+            String s1 = cr.getString(0);
+            String s2 = cr.getString(1);
+            String s3 = cr.getString(2);
+            String l = cr.getString(3);
+            String all = "Course Name: " + s1 + "\nExam Type:" + s2+ "\nExam Name:" + s3+ "\nDate:\n" + l;
             al.add(all);
         }
 

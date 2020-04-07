@@ -5,18 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     Button b1, b2,b3,b4,b5,b6;
-    EditText ed1,ed2;
+    EditText ed1,examType,edName,date1;
     data d;
 
 
@@ -33,15 +29,22 @@ public class MainActivity extends AppCompatActivity {
         b6 = findViewById(R.id.search);
 
         ed1 = findViewById(R.id.editData);
-        ed2 = findViewById(R.id.editLong);
+        edName = findViewById(R.id.edit);
+        examType = findViewById(R.id.examType);
+        date1 = findViewById(R.id.editLong);
+
         d = new data(getApplicationContext());
 
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String name = ed1.getText().toString();
-                long ph = Long.parseLong(ed2.getText().toString());
-                d.insertData(name,ph);
+                String ExamName = ed1.getText().toString();
+                String Type = examType.getText().toString();
+                String EName = edName.getText().toString();
+                String date = date1.getText().toString();
+                d.insertData(ExamName,Type,EName,date);
+
+
             }
         });
 
